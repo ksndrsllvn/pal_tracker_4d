@@ -1,5 +1,8 @@
 build
 .gradle
+gradlew
+gradlew.bat
+gradle/
 .idea
 *.iml
 ci/variables.yml
