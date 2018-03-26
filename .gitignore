@@ -2,7 +2,7 @@ build
 .gradle
 gradlew
 gradlew.bat
-gradle/
+gradle
 .idea
 *.iml
 ci/variables.yml
