@@ -1,5 +1,6 @@
 ---
+buildpack: java_buildpack_offline
 applications:
 - name: pal-tracker
   path: build/libs/pal-tracker.jar
-  host: kss-erm-pal-tracker
+  host: kss-erm-pal-tracker-production
