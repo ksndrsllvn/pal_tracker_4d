@@ -4,3 +4,5 @@ applications:
 - name: pal-tracker
   path: build/libs/pal-tracker.jar
   host: kss-erm-pal-tracker-production
+  env:
+    WELCOME_MESSAGE: "Hello from the production environment"
