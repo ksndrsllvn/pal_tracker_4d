@@ -1,6 +1,7 @@
 package test.pivotal.pal.tracker;
 
 import io.pivotal.pal.tracker.TimeEntry;
+import io.pivotal.pal.tracker.TimeEntryBuilder;
 import io.pivotal.pal.tracker.TimeEntryController;
 import io.pivotal.pal.tracker.TimeEntryRepository;
 import org.junit.Before;
@@ -29,8 +30,8 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        TimeEntry timeEntryToCreate = new TimeEntry(123L, 456L, LocalDate.parse("2017-01-08"), 8);
-        TimeEntry expectedResult = new TimeEntry(1L, 123L, 456L, LocalDate.parse("2017-01-08"), 8);
+        TimeEntry timeEntryToCreate = new TimeEntryBuilder().projectId(123L).userId(456L).date(LocalDate.parse("2017-01-08")).hours(8).createTimeEntry();
+        TimeEntry expectedResult = new TimeEntryBuilder().id(1L).projectId(123L).userId(456L).date(LocalDate.parse("2017-01-08")).hours(8).createTimeEntry();
         doReturn(expectedResult)
             .when(timeEntryRepository)
             .create(any(TimeEntry.class));
@@ -46,7 +47,7 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testRead() throws Exception {
-        TimeEntry expected = new TimeEntry(1L, 123L, 456L, LocalDate.parse("2017-01-08"), 8);
+        TimeEntry expected = new TimeEntryBuilder().id(1L).projectId(123L).userId(456L).date(LocalDate.parse("2017-01-08")).hours(8).createTimeEntry();
         doReturn(expected)
             .when(timeEntryRepository)
             .find(1L);
@@ -71,8 +72,8 @@ public class TimeEntryControllerTest {
     @Test
     public void testList() throws Exception {
         List<TimeEntry> expected = asList(
-            new TimeEntry(1L, 123L, 456L, LocalDate.parse("2017-01-08"), 8),
-            new TimeEntry(2L, 789L, 321L, LocalDate.parse("2017-01-07"), 4)
+                new TimeEntryBuilder().id(1L).projectId(123L).userId(456L).date(LocalDate.parse("2017-01-08")).hours(8).createTimeEntry(),
+                new TimeEntryBuilder().id(2L).projectId(789L).userId(321L).date(LocalDate.parse("2017-01-07")).hours(4).createTimeEntry()
         );
         doReturn(expected).when(timeEntryRepository).list();
 
@@ -85,7 +86,7 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        TimeEntry expected = new TimeEntry(1L, 987L, 654L, LocalDate.parse("2017-01-07"), 4);
+        TimeEntry expected = new TimeEntryBuilder().id(1L).projectId(987L).userId(654L).date(LocalDate.parse("2017-01-07")).hours(4).createTimeEntry();
         doReturn(expected)
             .when(timeEntryRepository)
             .update(eq(1L), any(TimeEntry.class));
@@ -103,7 +104,7 @@ public class TimeEntryControllerTest {
             .when(timeEntryRepository)
             .update(eq(1L), any(TimeEntry.class));
 
-        ResponseEntity response = controller.update(1L, new TimeEntry());
+        ResponseEntity response = controller.update(1L, new TimeEntryBuilder().createTimeEntry());
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 

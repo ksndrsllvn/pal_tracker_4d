@@ -1,27 +1,16 @@
 package io.pivotal.pal.tracker;
 
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public class TimeEntryRepository {
-    public ResponseEntity create(TimeEntry any) {
-        return null;
-    }
+public interface TimeEntryRepository {
+    TimeEntry create(TimeEntry any);
 
-    public void find(long l) {
+    TimeEntry find(long l);
 
-    }
+    List<TimeEntry> list();
 
-    public ResponseEntity<List<TimeEntry>> list() {
-        return null;
-    }
+    TimeEntry update(long eq, TimeEntry any) ;
 
-    public ResponseEntity update(long eq, TimeEntry any) {
-        return null;
-    }
-
-    public ResponseEntity<TimeEntry> delete(long l) {
-        return null;
-    }
+     void delete(long l) ;
 }
