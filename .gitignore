@@ -4,3 +4,5 @@ gradlew.bat
 .idea
 *.iml
 ci/variables.yml
+out/
+pal_tracker_4d/
