@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 @SpringBootApplication
 public class PalTrackerApplication {
 
+    //Pass off control to spring so it can use the magic of annotations
     public static void main(String[] args) {
         SpringApplication.run(PalTrackerApplication.class, args);
     }
